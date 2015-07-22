@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>
+        Calculate this!
+    </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="style.css">-->
+
+        <title>Template</title>
+        <meta charset="utf-8">
+        <!-- jquery cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <!--<script src="main.js"></script>-->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+        <!-- mobile first -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">        <!-- forces scroll on small screen, feels like native app
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        -->
+    <style>
+        *
+        {
+            border: 1px solid;
+            margin: 0px;
+            padding: 0px;
+        }
+        .blue {background-color: blue;}
+        .green {background-color:green;}
+        .yellow {bakground-color:yellow;}
+        .orange {background-color:orange;}
+
+        .container
+        {
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            transform:translate (-50% -50% -50%);
+            height: 50vh;
+        }
+        .screen_row
+        {
+            height: 60%;
+            min-height: 4em;
+            background-color: blueviolet;
+        }
+        .screen
+        {
+            min-height: 5em;
+            height: 70%;
+            /*width: 90%;*/
+            margin-top:1%;
+            /*margin-right: auto;*/
+            /*margin-left: auto;*/
+            background-color: lightseagreen;
+        }
+        .input_tray /* version .1*/
+        {
+            height: 5em;
+        }
+        #operator, #result
+        {
+            font-size: 3em;
+            width: 100%
+        }
+        #result
+        {
+            margin-top: .7em;
+        }
+        .input_tray
+        {
+            width: 100%;
+        }
+        .button_row
+        {
+            height: auto;
+        }
+        .btn
+        {
+            cursor: pointer;
+            cursor: hand;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $("#add_button").click(function(){
+            var number0_val = $("#number_0").val();
+            var number1_val = $("#number_1").val();
+            add_numbers(number0_val, number1_val);
+        });
+        function add_numbers(operand1, operand2){
+            console.log('add numbers called');
+            var result = parseFloat(operand1) + parseFloat(operand2);
+            $("#result").val(result);
+            $("result").val('+')
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row row.centered screen_row">
+            <div class="col-xs-12 col-centered screen result_display">
+                <input id="result" placeholder="output here" type="text">
+            </div>
+        </div>
+        <div class="row input_row input_row1">
+             <div class="input_box input_box_left col-xs-5"> <input class="input_tray"id="number_0" placeholder="enter 1st number" type="text"></div>
+            <div class="input_box input_box_center col-xs-2"><span id="operator">+</span></div>
+            <div class="input_box input_box_right col-xs-5"> <input class="input_tray" id="number_1" placeholder="enter 2nd number" type="text"></div>
+        </div>
+        <div class="row input_row input_row2">
+            <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                <button type="button" id="add_button"  class="btn btn-lg" >+</button>
+            </div>
+            <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                <button type="button"   class="btn btn-lg" >-</button>
+            </div>
+            <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                <button type="button"  class="btn btn-lg">*</button>
+            </div>
+            <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                <button type="button"  class="btn btn-lg">/</button>
+            </div>
+        </div>
+
+
+        <!--<div class="row button_row_box">-->
+            <!--<div class="row button_row_1 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >M+</button></div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >M-</button></div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg">MC</button></div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg">C</button>  </div>-->
+            <!--</div>-->
+            <!--<div class="row button_row_2 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >open</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >open</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >%</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg">X</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row button_row_3 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(7)"  class="btn btn-lg" >7</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(8)"  class="btn btn-lg" >8</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(9)"  class="btn btn-lg" >9</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >-</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row button_row_4 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(4)"  class="btn btn-lg" >4</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(5)"  class="btn btn-lg" >5</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(6)"  class="btn btn-lg" >6</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" id='add_button'  class="btn btn-lg" >+</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row button_row_5 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(1)"  class="btn btn-lg" >1</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(2)"  class="btn btn-lg" >2</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(3)"  class="btn btn-lg" >3</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg">/</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row button_row_6 button_row">-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit(0)"  class="btn btn-lg" >0</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()"  class="btn btn-lg" >.</button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg">+ / - </button>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                    <!--<button type="button" onclick="input_digit()" class="btn btn-lg"> = </button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    </div>
+</body>
+</html>
+
