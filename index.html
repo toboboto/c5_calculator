@@ -46,27 +46,30 @@
         }
         .screen_row
         {
-            height: 60%;
+            /*height: 60%;*/
             min-height: 4em;
-            background-color: blueviolet;
+            background-color: blue;
         }
         .screen
         {
-            min-height: 5em;
+            /*min-height: 5em;*/
             height: 70%;
             /*width: 90%;*/
-            margin-top:1%;
+            /*margin-top:1%;*/
             /*margin-right: auto;*/
             /*margin-left: auto;*/
-            background-color: lightseagreen;
+            background-color: lightblue;
         }
         .input_tray /* version .1*/
         {
-            height: 5em;
+            font-size: 2em;
+            width: 100%;
+            background-color: yellow;
+
         }
         #operator, #result
         {
-            font-size: 3em;
+            font-size: 2em;
             width: 100%;
         }
         #operator
@@ -77,11 +80,15 @@
         }
         #result
         {
-            margin-top: .7em;
+            margin-top: .1em;
         }
-        .input_tray
+        .input_row
         {
-            width: 100%;
+            background: lightblue;
+        }
+        #num1
+        {
+            text-align:right;
         }
         .button_row
         {
@@ -94,16 +101,11 @@
             width: 100%;
             height: 100%;
             text-align: center;
+            background-color: lightsteelblue;
         }
     </style>
     <script>
     $(document).ready(function(){ // BEGIN document ready function to load jquery after html loads
-        $("#add_btn").click(function() // adds functionality to clicking + button
-        {
-            var num1_val = $("#num1").val();
-            var num2_val = $("#num2").val();
-            add_numbers(num1_val, num2_val);
-        });
 
         function add_numbers (numb1, numb2) //function to add numbers
         {
@@ -113,19 +115,68 @@
             $("#operator").val('+');
         }
 
+        function sub_numbers(numb1, numb2) // function to subtract numbers
+        {
+            var result = parseFloat (numb1) - parseFloat (numb2);
+            $("#result").val(result);
+            $("#operator").val('-');
+        }
+
+        function mul_numbers (numb1, numb2)
+        {
+            var result = parseFloat (numb1) * parseFloat (numb2);
+            $("#result").val(result);
+            $("#operator").val('*');
+        }
+
+        function div_numbers(numb1, numb2)
+        {
+            if (numb2 ==0)
+            {
+                alert("cannot divide by zero")
+                $("#result").val('ERROR');
+            }
+
+            else
+            {
+                console.log('div numbers called');
+                var result = parseFloat(numb1) / parseFloat(numb2);
+                $("#result").val(result);
+                $("#operator").val('/');
+            }
+        }
+
+        $("#add_btn").click(function() // adds functionality to clicking + button
+        {
+            var_val = $("#num1").val();
+            var num2_val = $("#num2").val();
+            add_numbers(num1_val, num2_val);
+        });
+
+
         $('#sub_btn').click(function() // function runs on minus key click
         {
             var num1_val = $("#num1").val();
             var num2_val = $("#num2").val();
             sub_numbers(num1_val, num2_val);
         });
-        function sub_numbers(numb1, numb2) // function to subtract numbers
-        {
-            var result = parseFloat (numb1) - parseFloat (numb2);
-            $("#result").val(result);
-            $("#operator").val('-');
 
-        }
+
+        $('#mul_btn').click(function() // function runs on multiply key click
+        {
+            var num1_val = $("#num1").val();
+            var num2_val = $("#num2").val();
+            mul_numbers(num1_val, num2_val);
+        });
+
+        $('#div_btn').click(function() // function runs on divide key click
+        {
+            var num1_val = $("#num1").val();
+            var num2_val = $("#num2").val();
+            div_numbers(num1_val, num2_val);
+        });
+
+
     }); // END document ready function to load jquery after html loads
     </script>
 </head>
@@ -133,12 +184,12 @@
     <div class="container">
         <div class="row row.centered screen_row">
             <div class="col-xs-12 col-centered screen result_display">
-                <input id="result" placeholder="output here" type="text">
+                <input class="input_tray" id="result" placeholder="output here" type="text">
             </div>
         </div>
         <div class="row input_row input_row1">
              <div class="input_box input_box_left col-xs-5"> <input class="input_tray"id="num1" placeholder="enter 1st number" type="text"></div>
-            <div class="input_box input_box_center col-xs-2"><input class="" id="operator" readonly></input></div>
+            <div class="input_box input_box_center col-xs-2"><input class="input_tray" id="operator" readonly></input></div>
             <div class="input_box input_box_right col-xs-5"> <input class="input_tray" id="num2" placeholder="enter 2nd number" type="text"></div>
         </div>
         <div class="row input_row input_row2">
@@ -239,7 +290,7 @@
                 <!--</div>-->
             <!--</div>-->
 
-        <!--</div>-->
+        </div>
     </div>
 </body>
 </html>
