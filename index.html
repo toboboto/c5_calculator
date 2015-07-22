@@ -28,8 +28,8 @@
         *
         {
             border: 1px solid;
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
         }
         .blue {background-color: blue;}
         .green {background-color:green;}
@@ -41,7 +41,7 @@
             position: absolute;
             left: 5%;
             top: 5%;
-            transform:translate (-50% -50% -50%);
+            /*transform:translate (-50% -50% -50%);*/
             height: 50vh;
         }
         .screen_row
@@ -67,7 +67,13 @@
         #operator, #result
         {
             font-size: 3em;
-            width: 100%
+            width: 100%;
+        }
+        #operator
+        {
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
         }
         #result
         {
@@ -91,17 +97,36 @@
         }
     </style>
     <script>
-        $("#add_button").click(function(){
-            var number0_val = $("#number_0").val();
-            var number1_val = $("#number_1").val();
-            add_numbers(number0_val, number1_val);
+    $(document).ready(function(){ // BEGIN document ready function to load jquery after html loads
+        $("#add_btn").click(function() // adds functionality to clicking + button
+        {
+            var num1_val = $("#num1").val();
+            var num2_val = $("#num2").val();
+            add_numbers(num1_val, num2_val);
         });
-        function add_numbers(operand1, operand2){
-            console.log('add numbers called');
-            var result = parseFloat(operand1) + parseFloat(operand2);
+
+        function add_numbers (numb1, numb2) //function to add numbers
+        {
+            console.log ('add numbers called');
+            var result = parseFloat(numb1) + parseFloat(numb2);
             $("#result").val(result);
-            $("result").val('+')
-        };
+            $("#operator").val('+');
+        }
+
+        $('#sub_btn').click(function() // function runs on minus key click
+        {
+            var num1_val = $("#num1").val();
+            var num2_val = $("#num2").val();
+            sub_numbers(num1_val, num2_val);
+        });
+        function sub_numbers(numb1, numb2) // function to subtract numbers
+        {
+            var result = parseFloat (numb1) - parseFloat (numb2);
+            $("#result").val(result);
+            $("#operator").val('-');
+
+        }
+    }); // END document ready function to load jquery after html loads
     </script>
 </head>
 <body>
@@ -112,22 +137,22 @@
             </div>
         </div>
         <div class="row input_row input_row1">
-             <div class="input_box input_box_left col-xs-5"> <input class="input_tray"id="number_0" placeholder="enter 1st number" type="text"></div>
-            <div class="input_box input_box_center col-xs-2"><span id="operator">+</span></div>
-            <div class="input_box input_box_right col-xs-5"> <input class="input_tray" id="number_1" placeholder="enter 2nd number" type="text"></div>
+             <div class="input_box input_box_left col-xs-5"> <input class="input_tray"id="num1" placeholder="enter 1st number" type="text"></div>
+            <div class="input_box input_box_center col-xs-2"><input class="" id="operator" readonly></input></div>
+            <div class="input_box input_box_right col-xs-5"> <input class="input_tray" id="num2" placeholder="enter 2nd number" type="text"></div>
         </div>
         <div class="row input_row input_row2">
             <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                <button type="button" id="add_button"  class="btn btn-lg" >+</button>
+                <button type="button" id="add_btn"  class="btn btn-lg" ><h1>+</h1></button>
             </div>
             <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                <button type="button"   class="btn btn-lg" >-</button>
+                <button type="button" id="sub_btn"  class="btn btn-lg" ><h1>-</h1></button>
             </div>
             <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                <button type="button"  class="btn btn-lg">*</button>
+                <button type="button"  id="mul_btn" class="btn btn-lg"><h1>*</h1></button>
             </div>
             <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                <button type="button"  class="btn btn-lg">/</button>
+                <button type="button"  id="div_btn"class="btn btn-lg"><h1>/</h1></button>
             </div>
         </div>
 
