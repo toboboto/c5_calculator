@@ -159,18 +159,16 @@
 
 
         var clicked_number = null;
-        var operand_array = ['','']; // holds values of numbers to be calculated
-        var operator = '';  // string value of operator for display and switch
-        var operand_index = 0; // index position for operand_array
-        var operator_check = false; // was last key pressed an operator?
-        var numeral_check =false;  // was last key pressed a number?
+        var operand_array = ['',''];
+        var operator = '';
+        var operand_index = 0;
 
-        function add_numbers (operand1, operand2) //function called on + click
+        function add_numbers (operand1, operand2) //function to add numbers
         {
             console.log ('add numbers called');
-//            var result = parseFloat(operand1)+ parseFloat(operand2);
-//            $("#result_display").val(result);
-//            $("#operator").val('+');
+            var result = parseFloat(operand1)+ parseFloat(operand2);
+            $("#result_display").val(result);
+            $("#operator").val('+');
         }
 
         function sub_numbers(operand1, operand2) // function to subtract numbers
@@ -206,51 +204,19 @@
         function input_digit (digit) // function to put clicked numerals into operand array
         {
             clicked_number = digit;
+            console.log ('digit entered is',digit);
             operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
+            console.log ('array=', operand_array [operand_index]); // concat into array
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
-            console.log ('input_digit wrote to display');
         };
 
-        function operand_check_switch (operator) // check if operand index is 0 and switch to 1 if it is
+        function index_switch (operand)
         {
-            if (operand_array[0] != '')
+            if (operand_index == 0)
             {
-                $('#input_display').val(operand_array [0] + operator + operand_array [1]);  // add array to input display
-            console.log('operand_check_switch wrote to display')
-                operator = ''
+                operand_index = 1
             }
-            if (operator_check == true)
-            {
-                if (operand_index == 0)
-                {
-                    operand_index = 1
-                }
-            }
-
             console.log ('operator_btn clicked operand_index =', operand_index+ ', operator is',operator);
-        }
-
-        function operator_check_switch () //check if operator was previous key
-        {
-
-            // if operator_check false (prev key not operator) then set to true
-            if (operator_check == false, operand_array[0]!='' )
-                if (operator_check == false)
-                {
-                    operator_check = true;
-                    console.log ('oc switch ran, oc was false, operator_check now set to', operator_check)
-                }
-        }
-
-        function operator_index_switch(operator) // check if operator index is 0 or 1, check if operator pressed already
-        {
-            $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
-            console.log ("operator_index_switch wrote to display");
-            if (operator_index ==0) // if was still on first numbers
-            {
-                operator_index= 1 // set to array position for 2nd numbers
-                console.log ('operator index switch ran, operator_index is now ',operator_index)
-            }
         }
 
 
@@ -259,13 +225,6 @@
 
             $('.btn_numeral').click(function() // click handler for numeral buttons
             {
-                if (operand_array[0] =='')
-                {
-                    operator = ''
-                    operator_check = false;
-                }
-                numeral_check = true;
-                console.log ('numeral check set to', numeral_check);
                 clicked_number = $(this).text();
                 console.log (' click handler input number is ',clicked_number);
                 input_digit(clicked_number);
@@ -274,37 +233,19 @@
             $("#add_btn").click(function() // adds functionality to clicking + button
             {
                 operator = '+';
-                console.log ('click function add_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
-                if (operand_array[0] != '')
-                {
-                    numeral_check = false;
-                    console.log('add btn pressed numeral_check set to', numeral_check)
-                    operator_check_switch();
-                    operand_check_switch(operator);
-                }
-                else
-                {
-                    alert('please click a number first');
-                }
+                index_switch(operator);
+
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            add_numbers(num1_val, num2_val);
             });
 
 
             $('#sub_btn').click(function() // function runs on minus key click
             {
-                operator = '-';
-                console.log ('click handler sub_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
-
-                if (operand_array[0] != '')
-                {
-                    numeral_check = false;
-                    console.log('add btn pressed numeral_check set to', numeral_check)
-                    operator_check_switch();
-                    operand_check_switch(operator);
-                }
-                else
-                {
-                    alert('please click a number first');
-                }
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            sub_numbers(num1_val, num2_val);
             });
 
 
@@ -329,6 +270,35 @@
                     // other way is to refresh the display with any button. concat operand array[0] + operator + operand_array [1]
                 });
 
+    //        $("#add_btn").click(function() // adds functionality to clicking + button
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            add_numbers(num1_val, num2_val);
+    //        });
+    //
+    //
+    //        $('#sub_btn').click(function() // function runs on minus key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            sub_numbers(num1_val, num2_val);
+    //        });
+    //
+    //
+    //        $('#mul_btn').click(function() // function runs on multiply key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            mul_numbers(num1_val, num2_val);
+    //        });
+    //
+    //        $('#div_btn').click(function() // function runs on divide key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            div_numbers(num1_val, num2_val);
+    //        });
 
 
 
@@ -367,26 +337,26 @@
         <div class="row button_row_box">
             <div class="row button_row_1 button_row">
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" >MC</button></div>
+                    <button type="button"  class="btn btn-lg grad_button" >M+</button></div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" >MR</button></div>
+                    <button type="button"  class="btn btn-lg grad_button" >M-</button></div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" class="btn btn-lg grad_button">AC</button></div>
+                    <button type="button" class="btn btn-lg grad_button">MC</button></div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
                     <button type="button" class="btn btn-lg grad_button">C</button>  </div>
             </div>
             <div class="row button_row_2 button_row">
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" > M+</button>
+                    <button type="button"  class="btn btn-lg grad_button" >open</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" >M-</button>
+                    <button type="button"  class="btn btn-lg grad_button" >open</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" >Xⁿ</button>
+                    <button type="button"  class="btn btn-lg grad_button" >%</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='mul_btn' class="btn btn-lg grad_button">*</button>
+                    <button type="button" id='mul_btn' class="btn btn-lg grad_button">X</button>
                 </div>
             </div>
             <div class="row button_row_3 button_row">
@@ -439,7 +409,7 @@
                     <button type="button" id='zero_btn'   class="btn btn_numeral btn-lg grad_button" >0</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='sign_btn' class="btn btn-lg grad_button">+ / - </button>
+                    <button type="button" id='sign_btn' id="add_btn" class="btn btn-lg grad_button">+ / - </button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
                     <button type="button" id='equals_btn' class="btn btn-lg grad_button"> = </button>
