@@ -159,77 +159,72 @@
 
 
         var clicked_number = null;
+        var clicked_operator = null;
         var operand_array = ['','']; // holds values of numbers to be calculated
         var operator = '';  // string value of operator for display and switch
         var operand_index = 0; // index position for operand_array
         var operator_check = false; // was last key pressed an operator?
         var numeral_check =false;  // was last key pressed a number?
         var result = null;
-        var result_check = null; // flag for if calculate function has just ran
+        var result_check = null;  // flag for if calculate function has just ran
 
-        function add_numbers (operand1, operand2) //function called on + click
-        {
-            console.log ('add numbers called');
-//            var result = parseFloat(operand1)+ parseFloat(operand2);
-//            $("#result_display").val(result);
-//            $("#operator").val('+');
-        }
 
+//
         function addition ()
         {
             result = (parseInt(operand_array[0])+(parseInt(operand_array[1])) );
             console.log (operator,'calcualtion done, result=',result);
         }
-        /*****************************
-
-         function:  calculate
-         purpose:  execute operator on operands
-         params:   operand_array, operator, result_check
-         globals:  operand_array, operator result_check
-         returns:  var result
-
-         *************************************/
-        function calculate() {
-
-            switch (operator) {
-                case operator = '+' :
-                {
-                    result = (parseInt(operand_array[0]) + (parseInt(operand_array[1])) );
-
-                    break;
-                }
-                case operator = '-':
-                {
-                    result = (parseInt(operand_array[0]) - (parseInt(operand_array[1])) );
-                    break;
-                }
-                case operator = '*':
-                {
-                    result = (parseInt(operand_array[0]) * (parseInt(operand_array[1])) );
-                    break;
-                }
-                case operator = '/':
-                {
-                    if (operand_array[1] == 0) {
-                        alert("cannot divide by zero")
-                        $("#result_display").val('ERROR');
-                    }
-
-                    else {
-                        result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
-                    }
-
-                    break;
-                }
-
-            }
+//        /*****************************
+//
+//         function:  calculate
+//         purpose:  execute operator on operands
+//         params:   operand_array, operator, result_check
+//         globals:  operand_array, operator result_check
+//         returns:  var result
+//
+//         *************************************/
+//        function calculate() {
+//
+//            switch (operator) {
+//                case operator = '+' :
+//                {
+//                    result = (parseInt(operand_array[0]) + (parseInt(operand_array[1])) );
+//
+//                    break;
+//                }
+//                case operator = '-':
+//                {
+//                    result = (parseInt(operand_array[0]) - (parseInt(operand_array[1])) );
+//                    break;
+//                }
+//                case operator = '*':
+//                {
+//                    result = (parseInt(operand_array[0]) * (parseInt(operand_array[1])) );
+//                    break;
+//                }
+//                case operator = '/':
+//                {
+//                    if (operand_array[1] == 0) {
+//                        alert("cannot divide by zero")
+//                        $("#result_display").val('ERROR');
+//                    }
+//
+//                    else {
+//                        result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
+//                    }
+//
+//                    break;
+//                }
+//
+//            }
 //            if (result_check = true) // if function to pass result into array[0]
 //            {
 //                operand_array [0] = result;
 //            }
 //            result_check = true;
 
-        }
+        <!--}-->
 
         /*****************************
 
@@ -247,6 +242,13 @@
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_digit wrote to display');
         };
+
+        function input_operator (operator) // function to put clicked operator into array
+        {
+            clicked_operator = operator;
+            $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
+            console.log ('input_operator wrote to display')
+        }
 
         /*****************************
 
@@ -332,7 +334,7 @@
             operator_check = false; // was last key pressed an operator?
             numeral_check =false;  // was last key pressed a number?
             result = null;
-            result_check = null; // flag for if calculate function has just ran
+            result_check = false; // flag for if calculate function has just ran
             $('#result_display').val('');
             $('#input_display').val('');
         }
@@ -347,7 +349,7 @@
 
          *************************************/
         function calculate()
-        { if (result_check= true, result!= null)
+        { if (result_check= true && result!= null)
         {
               operand_array [0]= result;
         }
@@ -368,9 +370,18 @@
                     result = (parseInt(operand_array[0])*(parseInt(operand_array[1])) );
                     break;
                 }
-                case operator ='/':
+                case operator = '/':
                 {
-                    result = (parseInt(operand_array[0])/(parseInt(operand_array[1])) );
+                    if (operand_array[1] == 0) {
+                        alert("cannot divide by zero");
+                        $("#result_display").val('ERROR');
+                        all_clear();
+                    }
+
+                    else {
+                        result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
+                    }
+
                     break;
                 }
 
@@ -403,80 +414,31 @@
                 input_digit(clicked_number);
             });
 
-            $('.btn_operator').click(function()
+            $('.btn_operator').click(function()  // attempt to click handle all operators
             {
+                operator = $(this).text();
+                console.log('click handler input btn_operator', operator, 'assigned to operator')
 
-            });            // attempt to click handle all operators
-            $("#add_btn").click(function() // adds functionality to clicking + button
-            {
-                operator = '+';
-                console.log ('click function add_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
                 if (operand_array[0] != '')
                 {
                     numeral_check = false;
-                    console.log('add btn pressed numeral_check set to', numeral_check)
+                    console.log('click handler for operator pressed operator set to', operator)
                     operator_check_switch();
                     operand_check_switch(operator);
                 }
                 else
                 {
-                    alert('please click a number first');
+                    alert ('please click a number first');
                 }
             });
 
-
-            $('#sub_btn').click(function() // function runs on minus key click
-            {
-                operator = '-';
-                console.log ('click handler sub_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
-
-                if (operand_array[0] != '')
-                {
-                    numeral_check = false;
-                    console.log('add btn pressed numeral_check set to', numeral_check)
-                    operator_check_switch();
-                    operand_check_switch(operator);
-                }
-                else
-                {
-                    alert('please click a number first');
-                }
-            });
-
-
-            $('#mul_btn').click(function() // function runs on multiply key click
-            {
-                operator = '*';
-                console.log ('click handler mul_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
-
-                if (operand_array[0] != '')
-                {
-                    numeral_check = false;
-                    console.log('mul_btn pressed numeral_check set to', numeral_check)
-                    operator_check_switch();
-                    operand_check_switch(operator);
-                }
-                else
-                {
-                    alert('please click a number first');
-                }
-            });
-
-
-            $('#div_btn').click(function() // function runs on divide key click
-            {
-                operator = '/';
-                console.log ('click handler div_btn called. operator set to ',operator,'last key pressed was a number is',numeral_check)
-
-                if (operand_array[0] != '')
-                {
-                    numeral_check = false;
-                    console.log('div_btn pressed numeral_check set to', numeral_check)
-                    operator_check_switch();
-                    operand_check_switch(operator);
-                }
-            }); // end div_btn handler
-
+            /*****************************
+             function: cal_btn click handler
+             purpose:  click handler for "=" button
+             params:   operator
+             globals:  vars
+             returns:  output
+             *************************************/
             $('#cal_btn').click(function() // function runs on = press
             {
                 console.log ('the = button has been clicked')
@@ -485,7 +447,7 @@
 
             $('#clr_button').click(function() // click handler for Clear button
             {
-                operator = '*';
+                clear();
                 console.log ('clr_btn clicked');
             });
 
@@ -494,9 +456,6 @@
                 all_clear ();
                 console.log ('all clr_btn clicked');
             });
-
-
-
     }); // END document ready function to load jquery after html loads
     </script>
 </head>
@@ -548,10 +507,10 @@
                     <button type="button"  class="btn btn-lg grad_button" >M-</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button"  class="btn btn-lg grad_button" >Xⁿ</button>
+                    <button type="button"  class="btn btn-lg grad_button btn_operator" >Xⁿ</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='mul_btn' class="btn btn-lg grad_button">*</button>
+                    <button type="button" id='mul_btn' class="btn btn-lg grad_button btn_operator">*</button>
                 </div>
             </div>
             <div class="row button_row_3 button_row">
@@ -565,7 +524,7 @@
                     <button type="button" id="nine_btn" class="btn btn_numeral btn-lg grad_button" >9</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id="sub_btn"  class="btn btn-lg grad_button" >-</button>
+                    <button type="button" id="sub_btnn"  class="btn btn-lg grad_button btn_operator" >-</button>
                 </div>
             </div>
             <div class="row button_row_4 button_row">
@@ -579,7 +538,7 @@
                     <button type="button" id="six_btn"   class="btn btn_numeral btn-lg grad_button" >6</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='add_btn'  class="btn btn-lg grad_button" >+</button>
+                    <button type="button" id='add_btnn'  class="btn btn_operator btn-lg grad_button btn_operator" >+</button>
                 </div>
             </div>
             <div class="row button_row_5 button_row">
@@ -593,7 +552,7 @@
                     <button type="button" id='three_btn'   class="btn btn_numeral btn-lg grad_button" >3</button>
                 </div>
                 <div class="col-xs-3 key id='div_btn' col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='div_btn' id="div_btn" class="btn btn-lg grad_button">/</button>
+                    <button type="button" id='div_btn' id="div_btnn" class="btn btn-lg grad_button btn_operator">/</button>
                 </div>
             </div>
             <div class="row button_row_6 button_row">
@@ -604,7 +563,7 @@
                     <button type="button" id='zero_btn'   class="btn btn_numeral btn-lg grad_button" >0</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='sign_btn' class="btn btn-lg grad_button">+ / - </button>
+                    <button type="button" id='sign_btn' class="btn btn-lg grad_button btn_operator">+ / - </button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
                     <button type="button" id='cal_btn' class="btn btn-lg grad_button"> = </button>
