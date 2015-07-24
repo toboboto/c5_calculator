@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/index.html" line="319" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/index.html" line="320" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1901bf68-6711-40aa-a0a7-ee969b4236d9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="c5_calculator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +31,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6332547">
-              <caret line="478" column="75" selection-start-line="478" selection-start-column="75" selection-end-line="478" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.5966981">
+              <caret line="432" column="93" selection-start-line="432" selection-start-column="93" selection-end-line="432" selection-end-column="93" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
               </folding>
@@ -278,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6332547">
-          <caret line="478" column="75" selection-start-line="478" selection-start-column="75" selection-end-line="478" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.5966981">
+          <caret line="432" column="93" selection-start-line="432" selection-start-column="93" selection-end-line="432" selection-end-column="93" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
           </folding>

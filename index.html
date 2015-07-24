@@ -38,7 +38,8 @@
 
         .container
         {
-            position: absolute;
+            float: right;  /* just commented out for easy console log and testing*/
+            /*position: absolute;       ))))) commmented out just for easy console log and testing*/
             left: 5%;
             top: 5%;
             /*transform:translate (-50% -50% -50%);*/
@@ -421,15 +422,15 @@
         function all_clear()
         {
             console.log ('all clear function running');
-            clicked_number = null;
+            clicked_number = null; // storage for the number clicked on a keypad
             operand_array = ['','']; // holds values of numbers to be calculated
             operator = '';  // string value of operator for display and switch
             operand_index = 0; // index position for operand_array
             operator_check = false; // was last key pressed an operator?
             numeral_check =false;  // was last key pressed a number?
-            result = null;
+            result = null;   // result is what the calculation function outputs
             result_check = false; // flag for if calculate function has just ran
-            period_check=false;
+            period_check=false;  // WORK IN PROGRESS check if period has already been pressed
             $('#result_display').val('');
             $('#input_display').val('');
         }
@@ -438,47 +439,47 @@
 
          function:  calculate()
          purpose:  perform calculation based on operator value, keeps result in operand_array[0] if calculation just happened
-         params:   operator value, operand_array [],
+         params:   operator, operand_array [], result_check,
          globals:  operator, operand_array [], result_check,
-         returns:  operand_array, result, result_check
+         returns:  operand_array, result, result_check(true)
 
          *************************************/
-        function calculate()
-        { if (result_check= true && result!= null)
+        function calculate()  // begin calculate()
+        { if (result_check= true && result!= null) // check if global result_check is true && result is not null
             {
-                  operand_array [0]= result;
+                  operand_array [0]= result;   // set var result to operand array 0
             }
-            switch (operator) {
-                case operator = '+' :
+            switch (operator) {  // switch operation to determine calculation
+                case operator = '+' : // case if operator == +
                 {
-                    addition();
-                    break;
+                    addition();  // run addition() function
+                    break;   // break
                 }
-                case operator = '-':
+                case operator = '-':  // switch operation to
                 {
-                    subtraction();
-                    break;
+                    subtraction(); // run subtraction() function
+                    break;   // break
                 }
-                case operator = '*':
+                case operator = '*': // when operator is *
                 {
-                    multiplication();
-                    break;
+                    multiplication(); // run multiplication() function
+                    break;   // break
                 }
-                case operator = '/':
+                case operator = '/': // when operator is /
                 {
-                    division();
-                    break;
+                    division();  // run division function
+                    break;   // break
                 }
-                case operator = 'Xⁿ':
+                case operator = 'Xⁿ':  // when operator is Xⁿ
                 {
-                    exponent();
-                    break;
+                    exponent();  // run exponent() function
+                    break;   // break
                 }
 
             }
             $('#result_display').val(result); // add array to input display
-            result_check = true;
-        }
+            result_check = true;   // set result_check to true
+        }  // end bracket for calculate()
 
 
         $(document).ready(function()
