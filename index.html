@@ -226,13 +226,14 @@
          *************************************/
         function division ()
         {
-            if (operand_array[1] == 0) {
+            if (operand_array[1] == 0) // if 2nd number is a zero
+            {
                 alert("cannot divide by zero");
                 $("#result_display").val('ERROR');
                 all_clear();
             }
 
-            else
+            else // if 2nd number is NOT a zero
             {
                 result = (parseFloat (operand_array[0]) / (parseFloat (operand_array[1])) );
             }
@@ -252,6 +253,23 @@
         }
 
         /*****************************
+         *
+         * in progress in progress
+         *
+         function: reverse_sign
+         purpose:  reverses polarity of last number
+         params:
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
+//        function reverse_sign ()
+//        {
+//          // take operand array and multiply by -1.
+//            operand_array [operand_index] = (parseFloatoperand_array [operand_index]*-1)
+//            $('#input_display').val(operand_array [0] + operator + operand_array [1]); // add array to input display
+//            console.log('function reverse_sign wrote to display');
+        }
+        /*****************************
 
          function:  input_digit
          purpose:  put clicked numerals into operand array, update display
@@ -262,22 +280,28 @@
          *************************************/
         function input_digit (digit) // function to put clicked numerals into operand array
         {
-        if (digit=='.' && period_check==false)
-        {
-            period_check == true;
-        }
-        else if (period_check == true)
-        {
-            alert('this number already has a period');
-            return;
-        }
-
-
-            clicked_number = digit;
-            //period flag check
-            operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
-            $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
-            console.log ('input_digit wrote to display');
+//            if (digit == '+/-') /// for reverse sign
+//            {
+//                reverse_sign ();
+//            }
+//            else
+//            {
+                if (digit == '.' && period_check == false) // if . pressed and its the first period
+                {
+                    period_check == true;
+                }
+                else if (digit == '.' && period_check == true) // if period pressed and it's the 2nd period
+                {
+                    alert('this number already has a period');
+                    return;
+                }
+                else { // if pressed digit is != '.'
+                    clicked_number = digit;
+                    operand_array [operand_index] = (operand_array[operand_index] + digit ); // concat new input digit into operand_array
+                    $('#input_display').val(operand_array [0] + operator + operand_array [1]); // add array to input display
+                    console.log('input_digit wrote to display');
+                }
+            }
         }
         /*****************************
          function: input_operator
@@ -619,7 +643,7 @@
                     <button type="button" id='zero_btn'   class="btn btn_numeral btn-lg grad_button" >0</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='sign_btn' class="btn btn-lg grad_button btn_operator">+ / - </button>
+                    <button type="button" id='sign_btn' class="btn btn-lg grad_button btn_operator">+/- </button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
                     <button type="button" id='cal_btn' class="btn btn-lg grad_button"> = </button>
