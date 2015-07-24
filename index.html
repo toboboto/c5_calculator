@@ -179,7 +179,8 @@
         var numeral_check =false;  // was last key pressed a number?
         var result = null;
         var result_check = null;  // flag for if calculate function has just ran
-        var period_check = false;
+        var period_check = false;  // flag for if period was sent to current operand already
+        var last_entered; //  set to string for last entered key type or function (if add button makes calculate, then its calculate
 
 
         /*****************************
@@ -247,11 +248,12 @@
          globals:  result, operand_array
          returns:  result
          *************************************/
-        function exponent ()
-        {
-            result= Math.pow (parseFloat (operand_array[0]), parseFloat (operand_array[1]));
-            console.log (result,'is the result of exponent');
-        }
+        //DWP THIS ONE
+        function exponent ()  // function for running Xⁿ exponent()
+        {// open brace for exponent()
+            result= Math.pow (parseFloat (operand_array[0]), parseFloat (operand_array[1]));  // sets global var result to parseFloat operand 0 to the power of parseFloat operand 1 using Math.pow
+            console.log (result,'is the result of exponent'); // console.log of the exponent
+        } // closing brace for exponent()
 
         /*****************************
          *
@@ -310,7 +312,7 @@
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_operator wrote to display')
         }
-
+//
 //        function period_check_switch ()
 //        {
 //            if (period_check == false)
@@ -339,7 +341,7 @@
             if (operand_array[0] != '')
             {
                 $('#input_display').val(operand_array [0] + operator + operand_array [1]);  // add array to input display
-            console.log('operand_check_switch wrote to display')
+            console.log('operand_check_switch wrote to display');
                 operator = ''
             }
             if (operator_check == true)
@@ -348,10 +350,8 @@
                 {
                     operand_index = 1;
                     period_check= false;
-
                 }
             }
-
             console.log ('operator_btn clicked operand_index =', operand_index+ ', operator is',operator);
         }
 
@@ -397,8 +397,8 @@
         /*****************************
          function: clear()
          purpose:  clears only current number and display
-         params:
-         globals:
+         params:   operator, operand_array
+         globals:  operand_array[0], result, operator, operand_index
          returns:  resets to default,
          *************************************/
         function clear ()  // clears only current number and display
@@ -406,7 +406,13 @@
             console.log ('clear function ran')
             operand_array[0] == result;
             operand_array [operand_index]='';
-
+            if (result != null)
+            {
+                operand_array[0]= result;
+                operator = '';
+                console.log ('function clear says result!= null therefore result is',result,'operand_array[0] is',operand_array,'operator is',operator);
+            }
+            // need to set array 0 to result if result != null
             $('#result_display').val('');  // resets result dispaly
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
         }
@@ -439,33 +445,35 @@
 
          function:  calculate()
          purpose:  perform calculation based on operator value, keeps result in operand_array[0] if calculation just happened
-         params:   operator, operand_array [], result_check,
-         globals:  operator, operand_array [], result_check,
-         returns:  operand_array, result, result_check(true)
+         params:   operator, operand_array [], result_check, last_entered?
+         globals:  operator, operand_array [], result_check, last_entered
+         returns:  operand_array, result, result_check(true) last_entered
 
          *************************************/
         function calculate()  // begin calculate()
-        { if (result_check= true && result!= null) // check if global result_check is true && result is not null
+        {
+            if (result_check= true && result!= null) // check if global result_check is true && result is not null
             {
                   operand_array [0]= result;   // set var result to operand array 0
             }
-            switch (operator) {  // switch operation to determine calculation
+            switch (operator)  // switch operation to determine calculation
+            {
                 case operator = '+' : // case if operator == +
                 {
                     addition();  // run addition() function
                     break;   // break
                 }
-                case operator = '-':  // switch operation to
+                case operator = '-':  // case if operator is -
                 {
                     subtraction(); // run subtraction() function
                     break;   // break
                 }
-                case operator = '*': // when operator is *
+                case operator = '*': // case when operator is *
                 {
                     multiplication(); // run multiplication() function
                     break;   // break
                 }
-                case operator = '/': // when operator is /
+                case operator = '/': // case when operator is /
                 {
                     division();  // run division function
                     break;   // break
@@ -532,20 +540,21 @@
              *************************************/
             $('#cal_btn').click(function() // function runs on = press
             {
-                console.log ('the = button has been clicked')
+                console.log ('the = button has been clicked') //calls calculate()
                 calculate();
             });
 
-            $('#clr_btn').click(function() // click handler for Clear button
+            $('#clr_btn').click(function() // click handler for Clear button calls clear()
             {
                 console.log ('clr_btn clicked');
                 clear();
             });
 
-            $('#ac_btn').click(function() // click handler for AC button
+            $('#ac_btn').click(function() // click handler for AC button calls all_clear()
             {
                 all_clear ();
                 console.log ('all clr_btn clicked');
+
             });
     }); // END document ready function to load jquery after html loads
     </script>
