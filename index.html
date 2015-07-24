@@ -249,11 +249,11 @@
          returns:  result
          *************************************/
         //DWP THIS ONE
-        function exponent ()  // function for running Xⁿ exponent()
-        {// open brace for exponent()
-            result= Math.pow (parseFloat (operand_array[0]), parseFloat (operand_array[1]));  // sets global var result to parseFloat operand 0 to the power of parseFloat operand 1 using Math.pow
-            console.log (result,'is the result of exponent'); // console.log of the exponent
-        } // closing brace for exponent()
+           // function for running Xⁿ exponent()
+        // open brace for exponent()
+          // sets global var result to parseFloat operand 0 to the power of parseFloat operand 1 using Math.pow
+        // console.log of the exponent
+         // closing brace for exponent()
 
         /*****************************
          *
@@ -450,44 +450,44 @@
          returns:  operand_array, result, result_check(true) last_entered
 
          *************************************/
-        function calculate()  // begin calculate()
-        {
-            if (result_check= true && result!= null) // check if global result_check is true && result is not null
-            {
-                  operand_array [0]= result;   // set var result to operand array 0
-            }
-            switch (operator)  // switch operation to determine calculation
-            {
-                case operator = '+' : // case if operator == +
-                {
-                    addition();  // run addition() function
-                    break;   // break
-                }
-                case operator = '-':  // case if operator is -
-                {
-                    subtraction(); // run subtraction() function
-                    break;   // break
-                }
-                case operator = '*': // case when operator is *
-                {
-                    multiplication(); // run multiplication() function
-                    break;   // break
-                }
-                case operator = '/': // case when operator is /
-                {
-                    division();  // run division function
-                    break;   // break
-                }
-                case operator = 'Xⁿ':  // when operator is Xⁿ
-                {
-                    exponent();  // run exponent() function
-                    break;   // break
-                }
+         // begin calculate()
 
-            }
-            $('#result_display').val(result); // add array to input display
-            result_check = true;   // set result_check to true
-        }  // end bracket for calculate()
+              // check if global result_check is true && result is not null
+
+                 // set var result to operand array 0
+
+              // switch operation to determine calculation
+
+                // case if operator == +
+
+                    // run addition() function
+                      // break
+
+                  // case if operator is -
+
+                    // run subtraction() function
+                     // break
+
+                 // case when operator is *
+
+                     // run multiplication() function
+                      // break
+
+                // case when operator is /
+
+                   // run division function
+                   // break
+
+                 // when operator is Xⁿ
+
+                     // run exponent() function
+                     // break
+
+
+
+           // add global var result to input display
+               // set global var result_check to true
+         // end bracket for calculate()
 
 
         $(document).ready(function()

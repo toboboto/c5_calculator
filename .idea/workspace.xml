@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1901bf68-6711-40aa-a0a7-ee969b4236d9" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\User\Documents\LFZ\projects\c5_calculator\index moocow - Copy.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="c5_calculator.iws" />
@@ -30,8 +31,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.30070755">
-              <caret line="429" column="45" selection-start-line="429" selection-start-column="45" selection-end-line="429" selection-end-column="45" />
+            <state vertical-scroll-proportion="-3.9375">
+              <caret line="250" column="13" selection-start-line="250" selection-start-column="10" selection-end-line="250" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -283,8 +284,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.30070755">
-          <caret line="429" column="45" selection-start-line="429" selection-start-column="45" selection-end-line="429" selection-end-column="45" />
+        <state vertical-scroll-proportion="-3.9375">
+          <caret line="250" column="13" selection-start-line="250" selection-start-column="10" selection-end-line="250" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#body#0;n#html#0;n#!!top" expanded="false" />
