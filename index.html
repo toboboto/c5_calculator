@@ -127,19 +127,22 @@
         {
             border: 1px solid;
         }
-        .grad_grey {
+        .grad_grey
+        {
             background: -webkit-linear-gradient(gray, slategray); /* For Safari 5.1 to 6.0 */
             background: -o-linear-gradient(gray, slategray); /* For Opera 11.1 to 12.0 */
             background: -moz-linear-gradient(gray, slategray); /* For Firefox 3.6 to 15 */
             background: linear-gradient(gray, slategray); /* Standard syntax */
         }
-        .grad_screen {
+        .grad_screen
+        {
             background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
             background: -o-linear-gradient(black, darkgrey); /* For Opera 11.1 to 12.0 */
             background: -moz-linear-gradient(black, darkgray); /* For Firefox 3.6 to 15 */
             background: linear-gradient(black, darkgray); /* Standard syntax */
         }
-        .grad_button {
+        .grad_button
+        {
             background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
             background: -o-linear-gradient(darkgrey, darkslategray); /* For Opera 11.1 to 12.0 */
             background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
@@ -152,6 +155,14 @@
             background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
             background: linear-gradient(lightsteelblue, blue); /* Standard syntax */
         }
+        #period_btn
+        {
+            background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(darkgrey, darkslategray); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(lightsteelblue, steelblue); /* Standard syntax */
+        }
+
 
     </style>
     <script>
@@ -170,22 +181,49 @@
         var period_check = false;
 
 
-
+        /*****************************
+         function: addition
+         purpose:  add numbers together
+         params:   operand_array
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
         function addition ()
         {
-            result = (parseInt(operand_array[0])+(parseInt(operand_array[1])) );
-            console.log (operator,'calcualtion done, result=',result);
+            result = (parseFloat(operand_array[0])+(parseFloat(operand_array[1])) );
+            console.log (operator,'calculation done, result=',result);
         }
 
+        /*****************************
+         function: subtraction
+         purpose:  subtract numbers
+         params:   operand_array
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
         function subtraction ()
         {
-            result = (parseInt(operand_array[0])-(parseInt(operand_array[1])) );
+            result = (parseFloat (operand_array[0])-(parseFloat (operand_array[1])) );
         }
-
+        /*****************************
+         function: multiplication
+         purpose:  multiply numbers together
+         params:   operand_array
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
         function multiplication()
         {
-            result = (parseInt(operand_array[0])*(parseInt(operand_array[1])) );
+            result = (parseFloat (operand_array[0])*(parseFloat (operand_array[1])) );
         }
+
+        /*****************************
+         function: division
+         purpose:  divide numbers, check for divide by zero
+         params:   operand_array
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
         function division ()
         {
             if (operand_array[1] == 0) {
@@ -196,20 +234,27 @@
 
             else
             {
-                result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
+                result = (parseFloat (operand_array[0]) / (parseFloat (operand_array[1])) );
             }
 
         }
+        /*****************************
+         function: exponent
+         purpose:  x to the N power,
+         params:   operand_array
+         globals:  result, operand_array
+         returns:  result
+         *************************************/
         function exponent ()
         {
-            result= Math.pow (parseInt(operand_array[0]), parseInt(operand_array[1]));
+            result= Math.pow (parseFloat (operand_array[0]), parseFloat (operand_array[1]));
             console.log (result,'is the result of exponent');
         }
 
         /*****************************
 
          function:  input_digit
-         purpose:  put clicked numerals into operand array
+         purpose:  put clicked numerals into operand array, update display
          params:   digit from input numeral_btn click (numbers)
          globals:  operand_array
          returns:  update display, operand_array
@@ -217,19 +262,50 @@
          *************************************/
         function input_digit (digit) // function to put clicked numerals into operand array
         {
+        if (digit=='.' && period_check==false)
+        {
+            period_check == true;
+        }
+        else if (period_check == true)
+        {
+            alert('this number already has a period');
+            return;
+        }
+
+
             clicked_number = digit;
             //period flag check
             operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_digit wrote to display');
         }
-
+        /*****************************
+         function: input_operator
+         purpose:  put clicked operator into variable 'operator', update display
+         params:   operator
+         globals:  input_display, operator, operand_array
+         returns:  result
+         *************************************/
         function input_operator (operator) // function to put clicked operator into array
         {
             clicked_operator = operator;
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_operator wrote to display')
         }
+
+//        function period_check_switch ()
+//        {
+//            if (period_check == false)
+//            {
+//                period_check==true
+//                function input_digit ('.');
+//            }
+//            else if (period_check == true)
+//            {
+//                alert('this number already has a period');
+//                return;
+//            }
+//        }
 
         /*****************************
 
@@ -537,7 +613,7 @@
             </div>
             <div class="row button_row_6 button_row">
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
-                    <button type="button" id='period_btn' class="btn btn-lg grad_button" >.</button>
+                    <button type="button" id='period_btn' class="btn btn-lg grad_button btn_numeral" >.</button>
                 </div>
                 <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
                     <button type="button" id='zero_btn'   class="btn btn_numeral btn-lg grad_button" >0</button>
