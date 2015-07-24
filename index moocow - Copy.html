@@ -167,7 +167,6 @@
         var numeral_check =false;  // was last key pressed a number?
         var result = null;
         var result_check = null;  // flag for if calculate function has just ran
-        var period_check = false;
 
 
 
@@ -202,8 +201,13 @@
         }
         function exponent ()
         {
-            result= Math.pow (parseInt(operand_array[0]), parseInt(operand_array[1]));
-            console.log (result,'is the result of exponent');
+            var exponential_n = operand_array [1];
+            console.log ('function exponent called exponential_n is equal to', exponential_n);
+             (i=1, i<= exponential_n, i++)
+            {
+                console.log ('functino exponent loop');
+                result = (parseInt(operand_array[0])*(parseInt(operand_array[0])));
+            }
         }
 
         /*****************************
@@ -218,7 +222,6 @@
         function input_digit (digit) // function to put clicked numerals into operand array
         {
             clicked_number = digit;
-            //period flag check
             operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_digit wrote to display');
@@ -252,9 +255,7 @@
             {
                 if (operand_index == 0)
                 {
-                    operand_index = 1;
-                    period_check= false;
-
+                    operand_index = 1
                 }
             }
 
@@ -303,9 +304,9 @@
         /*****************************
          function:  all_clear()
          purpose:  clears all data except MR
-         params:
-         globals:  operand_array [], period_check, clicked_number, operand_array, operator, operand_index, operator_check, numeral_check, result, result_check
-         returns:  resets to default,
+         params:   operand_array [], clicked_number, operand_array, operator, operand_index, operator_check, numeral_check, result, result_check
+         globals:  operand_array [], clicked_number, operand_array, operator, operand_index, operator_check, numeral_check, result, result_check
+         returns:  resets to default
          *************************************/
         function all_clear()
         {
@@ -318,7 +319,6 @@
             numeral_check =false;  // was last key pressed a number?
             result = null;
             result_check = false; // flag for if calculate function has just ran
-            period_check=false;
             $('#result_display').val('');
             $('#input_display').val('');
         }
