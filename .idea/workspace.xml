@@ -27,15 +27,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42099056">
-              <caret line="225" column="0" selection-start-line="225" selection-start-column="2" selection-end-line="240" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.40706956">
+              <caret line="405" column="47" selection-start-line="405" selection-start-column="47" selection-end-line="405" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#11949#12402#0" expanded="false" />
-                <element signature="e#12504#13111#0" expanded="false" />
-                <element signature="e#13207#13814#0" expanded="false" />
-                <element signature="e#13913#14520#0" expanded="false" />
-                <element signature="e#14617#15727#0" expanded="false" />
+                <element signature="e#15691#16298#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -66,7 +62,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1374" />
-    <option name="width" value="1015" />
+    <option name="width" value="1593" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -179,10 +175,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1374" y="0" width="1015" height="1040" extended-state="0" />
+    <frame x="1374" y="0" width="1593" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18118118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11477489" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -214,7 +210,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.html</url>
+          <line>387</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -224,11 +228,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11949#12402#0" expanded="false" />
-            <element signature="e#12504#13111#0" expanded="false" />
-            <element signature="e#13207#13814#0" expanded="false" />
-            <element signature="e#13913#14520#0" expanded="false" />
-            <element signature="e#14617#15727#0" expanded="false" />
+            <element signature="e#15691#16298#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -239,11 +239,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11949#12402#0" expanded="false" />
-            <element signature="e#12504#13111#0" expanded="false" />
-            <element signature="e#13207#13814#0" expanded="false" />
-            <element signature="e#13913#14520#0" expanded="false" />
-            <element signature="e#14617#15727#0" expanded="false" />
+            <element signature="e#15691#16298#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -254,11 +250,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11949#12402#0" expanded="false" />
-            <element signature="e#12504#13111#0" expanded="false" />
-            <element signature="e#13207#13814#0" expanded="false" />
-            <element signature="e#13913#14520#0" expanded="false" />
-            <element signature="e#14617#15727#0" expanded="false" />
+            <element signature="e#15691#16298#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -269,26 +261,18 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11949#12402#0" expanded="false" />
-            <element signature="e#12504#13111#0" expanded="false" />
-            <element signature="e#13207#13814#0" expanded="false" />
-            <element signature="e#13913#14520#0" expanded="false" />
-            <element signature="e#14617#15727#0" expanded="false" />
+            <element signature="e#15691#16298#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42099056">
-          <caret line="225" column="0" selection-start-line="225" selection-start-column="2" selection-end-line="240" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.40706956">
+          <caret line="405" column="47" selection-start-line="405" selection-start-column="47" selection-end-line="405" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#11949#12402#0" expanded="false" />
-            <element signature="e#12504#13111#0" expanded="false" />
-            <element signature="e#13207#13814#0" expanded="false" />
-            <element signature="e#13913#14520#0" expanded="false" />
-            <element signature="e#14617#15727#0" expanded="false" />
+            <element signature="e#15691#16298#0" expanded="false" />
           </folding>
         </state>
       </provider>
