@@ -169,62 +169,35 @@
         var result_check = null;  // flag for if calculate function has just ran
 
 
-//
+
         function addition ()
         {
             result = (parseInt(operand_array[0])+(parseInt(operand_array[1])) );
             console.log (operator,'calcualtion done, result=',result);
         }
-//        /*****************************
-//
-//         function:  calculate
-//         purpose:  execute operator on operands
-//         params:   operand_array, operator, result_check
-//         globals:  operand_array, operator result_check
-//         returns:  var result
-//
-//         *************************************/
-//        function calculate() {
-//
-//            switch (operator) {
-//                case operator = '+' :
-//                {
-//                    result = (parseInt(operand_array[0]) + (parseInt(operand_array[1])) );
-//
-//                    break;
-//                }
-//                case operator = '-':
-//                {
-//                    result = (parseInt(operand_array[0]) - (parseInt(operand_array[1])) );
-//                    break;
-//                }
-//                case operator = '*':
-//                {
-//                    result = (parseInt(operand_array[0]) * (parseInt(operand_array[1])) );
-//                    break;
-//                }
-//                case operator = '/':
-//                {
-//                    if (operand_array[1] == 0) {
-//                        alert("cannot divide by zero")
-//                        $("#result_display").val('ERROR');
-//                    }
-//
-//                    else {
-//                        result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
-//                    }
-//
-//                    break;
-//                }
-//
-//            }
-//            if (result_check = true) // if function to pass result into array[0]
-//            {
-//                operand_array [0] = result;
-//            }
-//            result_check = true;
 
-        <!--}-->
+        function subtraction ()
+        {
+            result = (parseInt(operand_array[0])-(parseInt(operand_array[1])) );
+        }
+
+        function multiplication()
+        {
+            result = (parseInt(operand_array[0])*(parseInt(operand_array[1])) );
+        }
+        function division ()
+        {
+            if (operand_array[1] == 0) {
+                alert("cannot divide by zero");
+                $("#result_display").val('ERROR');
+                all_clear();
+            }
+
+            else {
+                result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
+            }
+
+        }
 
         /*****************************
 
@@ -241,7 +214,7 @@
             operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
             console.log ('input_digit wrote to display');
-        };
+        }
 
         function input_operator (operator) // function to put clicked operator into array
         {
@@ -350,9 +323,9 @@
          *************************************/
         function calculate()
         { if (result_check= true && result!= null)
-        {
-              operand_array [0]= result;
-        }
+            {
+                  operand_array [0]= result;
+            }
             switch (operator)
             {
                 case operator= '+' :
@@ -362,26 +335,17 @@
                 }
                 case operator='-':
                 {
-                    result = (parseInt(operand_array[0])-(parseInt(operand_array[1])) );
+                    subtraction();
                     break;
                 }
                 case operator='*':
                 {
-                    result = (parseInt(operand_array[0])*(parseInt(operand_array[1])) );
+                    multiplication ();
                     break;
                 }
                 case operator = '/':
                 {
-                    if (operand_array[1] == 0) {
-                        alert("cannot divide by zero");
-                        $("#result_display").val('ERROR');
-                        all_clear();
-                    }
-
-                    else {
-                        result = (parseInt(operand_array[0]) / (parseInt(operand_array[1])) );
-                    }
-
+                    division()
                     break;
                 }
 
@@ -392,7 +356,8 @@
         }
 
 
-        $(document).ready(function(){ // BEGIN document ready function to load jquery after html loads
+        $(document).ready(function()
+{ // BEGIN document ready function to load jquery after html loads
 
 
             $('.btn_numeral').click(function() // click handler for numeral buttons
