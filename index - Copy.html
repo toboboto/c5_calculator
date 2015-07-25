@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>
+        Calculate this!
+    </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="style.css">-->
+
+        <title>Template</title>
+        <meta charset="utf-8">
+        <!-- jquery cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <!--<script src="main.js"></script>-->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+        <!-- mobile first -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">        <!-- forces scroll on small screen, feels like native app
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        -->
+    <style>
+        #*
+        {
+            border: 1px solid;
+            margin: 0;
+            padding: 0;
+        }
+        .blue {background-color: blue;}
+        .green {background-color:green;}
+        .yellow {bakground-color:yellow;}
+        .orange {background-color:orange;}
+
+        .container
+        {
+            position: absolute;
+            left: 5%;
+            top: 5%;
+            /*transform:translate (-50% -50% -50%);*/
+            height: auto;
+            max-width: 20em;
+            border: 5px solid;
+            padding:.5em 2.5em ;
+            background-color: darkslategray;
+        }
+        .screen_row
+        {
+            /*height: 60%;*/
+            min-height: 4em;
+            background-color: blue;
+        }
+        .screen
+        {
+            /*min-height: 5em;*/
+            height: 70%;
+            /*width: 90%;*/
+            /*margin-top:1%;*/
+            /*margin-right: auto;*/
+            /*margin-left: auto;*/
+            background-color: lightblue;
+        }
+        .input_tray /* version .1*/
+        {
+            font-size: 2em;
+            width: 100%;
+            background-color: grey;
+            color: greenyellow;
+
+        }
+        #operator, #result_display
+        {
+            font-size: 2em;
+            width: 100%;
+        }
+        #operator
+        {
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #result_display
+        {
+            margin-top: .1em;
+        }
+        .input_row
+        {
+            background: lightblue;
+        }
+
+        .btn
+        {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: lightsteelblue;
+        }
+
+        .col-md-3, .col-sm-3, .col-lg-3, .col-xs-3
+        {
+            /*margin-right: 5px;*/
+            /*margin-left: 5px;*/
+            padding: .2em;
+        }
+
+        ::-webkit-input-placeholder {
+            color: lawngreen;
+            font-size: 1em;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            color: lawngreen;
+        }
+
+        ::-moz-placeholder {  /* Firefox 19+ */
+            color: lawngreen;
+        }
+
+        :-ms-input-placeholder {
+            color: lawngreen;
+        }
+        .btn
+        {
+            border: 1px solid;
+        }
+        .grad_grey {
+            background: -webkit-linear-gradient(darkslategray, slategray); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(lightgrey, darkslategray); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(gray, slategray); /* Standard syntax */
+        }
+        .grad_screen {
+            background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(black, darkgrey); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(black, darkgray); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(black, darkgray); /* Standard syntax */
+        }
+        .grad_button {
+            background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(darkgrey, darkslategray); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(lightsteelblue, steelblue); /* Standard syntax */
+        }
+        .btn_numeral
+        {
+            background: -webkit-linear-gradient(darkgray, slategray); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(darkgrey, darkslategray); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(lightgrey, darkslategray); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(lightsteelblue, blue); /* Standard syntax */
+        }
+
+    </style>
+    <script>
+
+
+
+        var clicked_number = null;
+        var operand_array = ['',''];
+        var operator = '';
+        var operand_index = 0;
+
+        function add_numbers (operand1, operand2) //function to add numbers
+        {
+            console.log ('add numbers called');
+            var result = parseFloat(operand1)+ parseFloat(operand2);
+            $("#result_display").val(result);
+            $("#operator").val('+');
+        }
+
+        function sub_numbers(operand1, operand2) // function to subtract numbers
+        {
+            var result = parseFloat (operand1)- parseFloat(operand2);;
+            $("#result_display").val(result);
+            $("#operator").val('-');
+        }
+        function mul_numbers (operand1, operand2)
+        {
+            var result = parseFloat (operand1)* parseFloat(operand2);
+            $("#result_display").val(result);
+            $("#operator").val('*');
+        }
+
+        function div_numbers(operand1, operand2)
+        {
+            if (numb2 ==0)
+            {
+                alert("cannot divide by zero")
+                $("#result_display").val('ERROR');
+            }
+
+            else
+            {
+                console.log('div numbers called');
+                var result = parseFloat(operand1)/ parseFloat(operand2);
+                $("#result_display").val(result);
+                $("#operator").val('/');
+            }
+        }
+
+        function input_digit (digit) // function to put clicked numerals into operand array
+        {
+            clicked_number = digit;
+            console.log ('digit entered is',digit);
+            operand_array [operand_index] = (operand_array[operand_index]+ digit ); // concat new input digit into operand_array
+            console.log ('array=', operand_array [operand_index]); // concat into array
+            $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
+        };
+
+        function index_switch (operand)
+        {
+            if (operand_index == 0)
+            {
+                operand_index = 1
+            }
+            console.log ('operator_btn clicked operand_index =', operand_index+ ', operator is',operator);
+        }
+
+
+        $(document).ready(function(){ // BEGIN document ready function to load jquery after html loads
+
+
+            $('.btn_numeral').click(function() // click handler for numeral buttons
+            {
+                clicked_number = $(this).text();
+                console.log (' click handler input number is ',clicked_number);
+                input_digit(clicked_number);
+            });
+
+            $("#add_btn").click(function() // adds functionality to clicking + button
+            {
+                operator = '+';
+                index_switch(operator);
+
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            add_numbers(num1_val, num2_val);
+            });
+
+
+            $('#sub_btn').click(function() // function runs on minus key click
+            {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            sub_numbers(num1_val, num2_val);
+            });
+
+
+            $('#mul_btn').click(function() // function runs on multiply key click
+            {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            mul_numbers(num1_val, num2_val);
+            });
+
+            $('#div_btn').click(function() // function runs on divide key click
+            {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            div_numbers(num1_val, num2_val);
+            });
+
+            $('#calculate_btn').click(function() // function runs on "=" click
+                {
+                    // if press number button, clear display- set flag calculate and prepare for next. calculation_performed=true
+                    // as soon as any other button pressed, set to false.  clear input digit display.
+                    // other way is to refresh the display with any button. concat operand array[0] + operator + operand_array [1]
+                });
+
+    //        $("#add_btn").click(function() // adds functionality to clicking + button
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            add_numbers(num1_val, num2_val);
+    //        });
+    //
+    //
+    //        $('#sub_btn').click(function() // function runs on minus key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            sub_numbers(num1_val, num2_val);
+    //        });
+    //
+    //
+    //        $('#mul_btn').click(function() // function runs on multiply key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            mul_numbers(num1_val, num2_val);
+    //        });
+    //
+    //        $('#div_btn').click(function() // function runs on divide key click
+    //        {
+    //            var num1_val = $(operand_array[0]).val();
+    //            var num2_val = $(operand_array[1]).val();
+    //            div_numbers(num1_val, num2_val);
+    //        });
+
+
+
+    }); // END document ready function to load jquery after html loads
+    </script>
+</head>
+<body>
+    <div class="container grad_grey">
+        <div class="row row.centered screen_row">
+            <div class="col-xs-12 col-centered screen result_screen">
+                <input class="grad_screen input_tray" id="result_display" placeholder="output here" type="text" readonly>
+            </div>
+        </div>
+        <div class="row input_row input_row1">
+            <div class="input_box input_box_left col-xs-12"> <input class="grad_screen input_tray"id="input_display" placeholder="Input box" type="text" readonly></div>
+             <!--<div class="input_box input_box_left col-xs-5"> <input class="input_tray"id="num1" placeholder="enter 1st number" type="text"></div>-->
+            <!--<div class="input_box input_box_center col-xs-2"><input class="input_tray" id="operator" placeholder=" "readonly></div>  ************************ moo cow  why so skinny -->
+            <!--<div class="input_box input_box_right col-xs-5"> <input class="input_tray" id="num2" placeholder="enter 2nd number" type="text"></div>-->
+        </div>
+        <!--<div class="row input_row input_row2">-->
+            <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                <!--<button type="button" id="add_btn"  class="btn btn-lg grad_button" ><h1>+</h1></button>-->
+            <!--</div>-->
+            <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                <!--<button type="button" id="sub_btn"  class="btn btn-lg grad_button" ><h1>-</h1></button>-->
+            <!--</div>-->
+            <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                <!--<button type="button"  id="mul_btn" class="btn btn-lg grad_button"><h1>*</h1></button>-->
+            <!--</div>-->
+            <!--<div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">-->
+                <!--<button type="button"  id="div_btn"class="btn btn-lg grad_button"><h1>/</h1></button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row button_row_box">
+            <div class="row button_row_1 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button"  class="btn btn-lg grad_button" >M+</button></div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button"  class="btn btn-lg grad_button" >M-</button></div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-lg grad_button">MC</button></div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" class="btn btn-lg grad_button">C</button>  </div>
+            </div>
+            <div class="row button_row_2 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button"  class="btn btn-lg grad_button" >open</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button"  class="btn btn-lg grad_button" >open</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button"  class="btn btn-lg grad_button" >%</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='mul_btn' class="btn btn-lg grad_button">X</button>
+                </div>
+            </div>
+            <div class="row button_row_3 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="seven_btn"   class="btn btn_numeral btn-lg grad_button" >7</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="eight_btn"   class="btn btn_numeral btn-lg grad_button" >8</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="nine_btn" class="btn btn_numeral btn-lg grad_button" >9</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="sub_btn"  class="btn btn-lg grad_button" >-</button>
+                </div>
+            </div>
+            <div class="row button_row_4 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="four_btn"   class="btn btn_numeral btn-lg grad_button" >4</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="five_btn"   class="btn btn_numeral btn-lg grad_button" >5</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id="six_btn"   class="btn btn_numeral btn-lg grad_button" >6</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='add_btn'  class="btn btn-lg grad_button" >+</button>
+                </div>
+            </div>
+            <div class="row button_row_5 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='one_btn'   class="btn btn_numeral btn-lg grad_button" >1</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='two_btn'   class="btn btn_numeral btn-lg grad_button" >2</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='three_btn'   class="btn btn_numeral btn-lg grad_button" >3</button>
+                </div>
+                <div class="col-xs-3 key id='div_btn' col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='div_btn' id="div_btn" class="btn btn-lg grad_button">/</button>
+                </div>
+            </div>
+            <div class="row button_row_6 button_row">
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='period_btn' class="btn btn-lg grad_button" >.</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='zero_btn'   class="btn btn_numeral btn-lg grad_button" >0</button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='sign_btn' id="add_btn" class="btn btn-lg grad_button">+ / - </button>
+                </div>
+                <div class="col-xs-3 key col-sm-3 col-md-3 col-lg-3">
+                    <button type="button" id='equals_btn' class="btn btn-lg grad_button"> = </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+
