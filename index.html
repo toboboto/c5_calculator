@@ -363,7 +363,7 @@
             }
             if (true) ///testing so true
             {
-                console.log ('operator_check =',operator_check)
+                console.log ('operator_check =',operator_check);
                 if (operand_index == 0)
                 {
                     operand_index = 1;
@@ -388,14 +388,15 @@
             if (last_entered == 'result' && operand_array[0]!='' && operand_array[1]=='')// if no 2nd number
                 if (last_entered!= 'operator')
                 {
+                    previous_last_entered=last_entered;
                     last_entered='operator'
                     console.log ('oc switch ran, oc was false, operator_check now set to', operator_check)
                 }
-            if (last_entered == 'result' && operand_array[0]!='' && operand_array[1]!='') // if 1st and 2nd number
-            {
-                last_entered = 'result'
-                calculate();
-            }
+//            if (last_entered == 'result' && operand_array[0]!='' && operand_array[1]!='') // if 1st and 2nd number
+//            {
+//                last_entered = 'result'
+//                calculate();
+//            }
         }
         /*****************************
 
