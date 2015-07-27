@@ -178,10 +178,10 @@
         var operator_check = false; // was last key pressed an operator?
         var numeral_check =false;  // was last key pressed a number?
         var result = null;
-        var result_check = null;  // flag for if calculate function has just ran
+        var result_check = null;  // flag for if calculate function has ran since all clear
         var period_check = false;  // flag for if period was sent to current operand already
-        var last_entered; //  set to string for last entered key type or function (if add button makes calculate, then its calculate
-
+        var last_entered=null; //  set to string for last entered key type or function (if add button makes calculate, then its calculate
+        var previous_last_entered; // for the entered before last entered, helps with clear
 
         /*****************************
          function: addition
@@ -285,7 +285,14 @@
         {
                 if (digit == '.' && period_check == false) // if . pressed and its the first period
                 {
-                    period_check == true;
+                    period_check = true;
+                    previous_last_entered=last_entered;
+                    last_entered='period';
+                    console.log ('last_entered set to period:', last_entered, "previous last entered set to",previous_last_entered);
+                    clicked_number = digit;
+                    operand_array [operand_index] = (operand_array[operand_index] + digit ); // concat new input digit into operand_array
+                    $('#input_display').val(operand_array [0] + operator + operand_array [1]); // add array to input display
+                    console.log('input_digit wrote to display');
                 }
                 else if (digit == '.' && period_check == true) // if period pressed and it's the 2nd period
                 {
@@ -294,6 +301,10 @@
                 }
                 else { // if pressed digit is != '.'
                     clicked_number = digit;
+                    previous_last_entered=last_entered;
+                    last_entered='numeral';
+                    console.log ('last_entered set to numeral:', last_entered, "previous last entered set to",previous_last_entered);
+
                     operand_array [operand_index] = (operand_array[operand_index] + digit ); // concat new input digit into operand_array
                     $('#input_display').val(operand_array [0] + operator + operand_array [1]); // add array to input display
                     console.log('input_digit wrote to display');
@@ -309,8 +320,13 @@
         function input_operator (operator) // function to put clicked operator into array
         {
             clicked_operator = operator;
+            operand_check_switch;
             $('#input_display').val(operand_array [0]+ operator + operand_array [1]); // add array to input display
+            previous_last_entered=last_entered;
+            last_entered='period';
+            console.log ('last_entered set to operator:', last_entered, "previous last entered set to",previous_last_entered);
             console.log ('input_operator wrote to display')
+
         }
 //
 //        function period_check_switch ()
@@ -330,7 +346,7 @@
         /*****************************
 
          function:  operand_check_switch
-         purpose:  check if operand index is 0 and swtich to 1 if it is
+         purpose:  check if last clicked is operator, check if operand index is 0 and swtich to 1 if it is,
          params:   operand_array, operator_check, operand_index
          globals:  operator_check, operand_index, operand_array
          returns:  operand_index, updates display
@@ -338,14 +354,16 @@
          *************************************/
         function operand_check_switch (operator) // check if operand index is 0 and switch to 1 if it is
         {
+            console.log ('operand_check_switch starting');
             if (operand_array[0] != '')
             {
                 $('#input_display').val(operand_array [0] + operator + operand_array [1]);  // add array to input display
             console.log('operand_check_switch wrote to display');
                 operator = ''
             }
-            if (operator_check == true)
+            if (true) ///testing so true
             {
+                console.log ('operator_check =',operator_check)
                 if (operand_index == 0)
                 {
                     operand_index = 1;
@@ -363,16 +381,21 @@
          returns:   operator_check = change to false if numeral in operand_array[0]
 
          *************************************/
-        function operator_check_switch () //check if operator was previous key
+        function operator_check_switch () // operator inputed, check if needs to perform equals operation
         {
-
+            console.log ('operator_check_switch ran')
             // if operator_check false (prev key not operator) then set to true
-            if (operator_check == false, operand_array[0]!='' )
-                if (operator_check == false)
+            if (last_entered == 'result' && operand_array[0]!='' && operand_array[1]=='')// if no 2nd number
+                if (last_entered!= 'operator')
                 {
-                    operator_check = true;
+                    last_entered='operator'
                     console.log ('oc switch ran, oc was false, operator_check now set to', operator_check)
                 }
+            if (last_entered == 'result' && operand_array[0]!='' && operand_array[1]!='') // if 1st and 2nd number
+            {
+                last_entered = 'result'
+                calculate();
+            }
         }
         /*****************************
 
@@ -437,6 +460,8 @@
             result = null;   // result is what the calculation function outputs
             result_check = false; // flag for if calculate function has just ran
             period_check=false;  // WORK IN PROGRESS check if period has already been pressed
+            last_entered=null
+            previous_last_entered=null;
             $('#result_display').val('');
             $('#input_display').val('');
         }
@@ -445,14 +470,14 @@
 
          function:  calculate()
          purpose:  perform calculation based on operator value, keeps result in operand_array[0] if calculation just happened
-         params:   operator, operand_array [], result_check, last_entered?
-         globals:  operator, operand_array [], result_check, last_entered
-         returns:  operand_array, result, result_check(true) last_entered
+         params:   operator, operand_array [],  last_entered?
+         globals:  operator, operand_array [],  last_entered
+         returns:  operand_array, result,  last_entered='result'
 
          *************************************/
         function calculate()  // begin calculate()
         {
-            if (result_check= true && result!= null) // check if global result_check is true && result is not null
+            if (last_entered== 'result' && result!= null) // check if global last_entered is 'result' && result is not null
             {
                   operand_array [0]= result;   // set var result to operand array 0
             }
@@ -486,7 +511,8 @@
 
             }
             $('#result_display').val(result); // add array to input display
-            result_check = true;   // set result_check to true
+            previous_last_entered=last_entered;
+            last_entered = 'result';   // set last_entered to 'result'
         }  // end bracket for calculate()
 
 
@@ -496,18 +522,18 @@
 
             $('.btn_numeral').click(function() // click handler for numeral buttons
             {
-                if (result_check = true)
+                if (last_entered == 'result')
                 {
-                    all_clear;
-                    console.log ('all clear ran because calculate directly preceded number press')
+                    all_clear();
+                    console.log ('btn numeral says all clear ran because calculate directly preceded number press')
+                    previous_last_entered='';
+                    last_entered='';
                 }
                 if (operand_array[0] =='')
                 {
-                    operator = ''
-                    operator_check = false;
+                    operator = '';
                 }
-                numeral_check = true;
-                console.log ('numeral check set to', numeral_check);
+                previous_last_entered=last_entered;
                 clicked_number = $(this).text();
                 console.log (' click handler input number is ',clicked_number);
                 input_digit(clicked_number);
@@ -518,10 +544,10 @@
                 operator = $(this).text();
                 console.log('click handler input btn_operator', operator, 'assigned to operator')
 
-                if (operand_array[0] != '')
+                if (operand_array[0] != '') // if a number is in operand_array
                 {
-                    numeral_check = false;
-                    console.log('click handler for operator pressed operator set to', operator)
+                    last_entered = 'operator';  // set last_entered
+                    console.log('click handler for operator pressed operator set to', operator);
                     operator_check_switch();
                     operand_check_switch(operator);
                 }
